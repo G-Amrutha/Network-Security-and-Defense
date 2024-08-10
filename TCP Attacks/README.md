@@ -1,24 +1,22 @@
-# Network Security Testing Scripts
+# Network Attack Simulation Scripts
 
 ## Overview
 
-This repository contains various scripts designed for network security testing and educational purposes. These scripts demonstrate concepts such as packet sniffing, spoofing, session hijacking, SYN flooding, and TCP reset attacks.
+This section contains scripts designed to simulate various network attacks, including session hijacking, TCP reset attacks, and SYN flooding. These scripts are intended for educational purposes and demonstrate how network protocols can be manipulated for attack vectors.
 
 ### Scripts
 
-1. **icmp_spoof.py**: Sends a spoofed ICMP packet to a specified destination.
-2. **sniff_spoof_icmp.py**: Sniffs ICMP echo request packets and sends a spoofed ICMP echo reply.
-3. **sniffer.py**: Sniffs ICMP packets on a specified network interface and prints packet details.
-4. **sessionhijack.py**: Performs a session hijacking attack by spoofing TCP packets.
-5. **reset.py**: Executes a TCP reset attack by sending forged TCP reset packets.
-6. **synflood.py**: Launches a SYN flood attack using Python to overwhelm a target with TCP SYN packets.
-7. **synflood.c**: A C program that also performs a SYN flood attack on a specified target.
+1. **sessionhijack.py**: Performs a session hijacking attack by spoofing TCP packets to inject data into an existing TCP session.
+2. **reset.py**: Executes a TCP reset attack by sending forged TCP reset packets to terminate a TCP connection.
+3. **synflood.py**: Launches a SYN flood attack using Python to overwhelm a target with TCP SYN packets.
+4. **synflood.c**: A C program that performs a SYN flood attack on a specified target using raw sockets.
 
 ## Requirements
 
 - Python 3.x
 - Scapy library (for Python scripts)
 - GCC compiler (for compiling the C program)
+- Root or sudo privileges to execute scripts that require raw socket operations.
 
 To install Scapy, run:
 ```bash
@@ -32,47 +30,11 @@ gcc -o synflood synflood.c
 
 ## Usage
 
-### ICMP Spoofing
-
-**Script**: `icmp_spoof.py`
-
-This script sends a spoofed ICMP packet from a fake source IP to a specified destination.
-
-#### How to run:
-
-```bash
-python3 icmp_spoof.py
-```
-
-### Sniff and Spoof ICMP
-
-**Script**: `sniff_spoof_icmp.py`
-
-This script listens for ICMP echo request packets from a specific IP address and sends back spoofed ICMP echo replies.
-
-#### How to run:
-
-```bash
-python3 sniff_spoof_icmp.py
-```
-
-### ICMP Packet Sniffer
-
-**Script**: `sniffer.py`
-
-This script sniffs ICMP packets on a network interface and prints the source IP, destination IP, and protocol.
-
-#### How to run:
-
-```bash
-python3 sniffer.py
-```
-
 ### Session Hijacking
 
 **Script**: `sessionhijack.py`
 
-This script performs a session hijacking attack by spoofing TCP packets to inject data into an existing TCP session.
+This script performs a session hijacking attack by capturing packets in a TCP session and injecting commands or data.
 
 #### How to run:
 
@@ -84,7 +46,7 @@ python3 sessionhijack.py <client_ip> <server_ip>
 
 **Script**: `reset.py`
 
-This script performs a TCP reset attack by sending forged TCP reset packets to terminate a TCP connection.
+This script sends forged TCP reset packets to terminate a TCP connection between a client and a server.
 
 #### How to run:
 
@@ -96,7 +58,7 @@ python3 reset.py <client_ip> <server_ip>
 
 **Script**: `synflood.py`
 
-This script launches a SYN flood attack by sending numerous TCP SYN packets to a target, aiming to exhaust its resources.
+This script generates a flood of TCP SYN packets to a target IP address, attempting to overwhelm the target's resources.
 
 #### How to run:
 
@@ -108,7 +70,7 @@ python3 synflood.py
 
 **Program**: `synflood.c`
 
-This C program performs a SYN flood attack, similar to the Python version, but using a compiled executable.
+This C program sends a continuous stream of TCP SYN packets to a target, exploiting raw sockets to achieve high packet throughput.
 
 #### How to compile and run:
 
@@ -119,6 +81,6 @@ gcc -o synflood synflood.c
 
 ### Notes
 
-- Ensure you have the necessary permissions to run network sniffing and spoofing scripts on your machine.
-- Replace `iface` in the Python scripts with your network interface name if needed.
-- Use these scripts only in controlled environments with explicit permission, as unauthorized use is illegal and unethical.
+- Ensure you have the necessary permissions to run network manipulation scripts on your machine.
+- These scripts are for educational and testing purposes in a controlled environment.
+- Unauthorized use on networks you do not own or have permission to test is illegal and unethical.
